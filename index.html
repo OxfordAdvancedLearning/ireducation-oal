@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oxford Advanced Learning</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    :root {
+      --primary-color: #003366;
+      --secondary-color: #00509e;
+      --accent-color: #f7b731;
+      --bg-light: #f4f6f9;
+      --text-dark: #2c3e50;
+      --text-light: #596275;
+      --white: #ffffff;
+      --font-main: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+
+    /* Navbar */
+    header {
+      background-color: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .nav-links a {
+      margin-left: 2rem;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background-color: var(--primary-color);
+      color: var(--white);
+      height: 80vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      width: 100%;
+    }
+
+    .hero-text {
+      max-width: 525px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .globe-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0.8;
+      pointer-events: none; /* Let clicks pass through if needed, or remove to interact */
+    }
+
+    .globe-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background-color: var(--accent-color);
+      color: var(--text-dark);
+      font-weight: 600;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #e5a720;
+      text-decoration: none;
+      color: var(--text-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--white);
+      color: var(--white);
+      margin-left: 1rem;
+    }
+
+    .btn-outline:hover {
+      background-color: var(--white);
+      color: var(--primary-color);
+    }
+
+    /* Container for sections */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background-color: var(--accent-color);
+      margin: 1rem auto 0;
+    }
+
+    /* Overview Section */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .overview-card {
+      background: var(--white);
+      padding: 2.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      border-top: 4px solid var(--secondary-color);
+      transition: transform 0.3s;
+    }
+
+    .overview-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .overview-card i {
+      font-size: 2.5rem;
+      color: var(--secondary-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .overview-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    /* About Section */
+    .about-section {
+      background-color: var(--white);
+      padding: 5rem 0;
+    }
+
+    .profile-card {
+      background: var(--bg-light);
+      border-radius: 8px;
+      padding: 3rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .profile-header h3 {
+      font-size: 1.75rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .profile-header p {
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .ireducation-block {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      border-radius: 8px;
+      margin-top: 3rem;
+    }
+
+    .ireducation-block p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      opacity: 0.9;
+    }
+
+    .ireducation-block .btn {
+      margin-top: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--primary-color);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 2rem;
+    }
+
+    @media (max-width: 992px) {
+      .hero {
+        text-align: center;
+      }
+      .globe-container {
+        width: 100%;
+        opacity: 0.3;
+      }
+      .hero-text {
+        margin: 0 auto;
+      }
+      .btn-outline {
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+      .nav-links {
+        display: none; /* Simple mobile adjustment */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <div class="brand">Oxford Advanced Learning</div>
+      <nav class="nav-links">
+        <a href="#overview">Overview</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="globe-container">
+      <iframe src="https://isaacteng.com/globe.html?loc=oxford" class="globe-iframe" scrolling="no"></iframe>
+    </div>
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Shaping the Future of Learning</h1>
+        <p>Premium educational consultancy and state-of-the-art AI-driven pedagogical tools, empowering students, teachers, and institutions globally.</p>
+        <a href="#overview" class="btn">Discover More</a>
+        <a href="#about" class="btn btn-outline">Meet the Team</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="overview" class="container">
+    <h2 class="section-title">What We Do</h2>
+    <div class="overview-grid">
+      <div class="overview-card">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <h3>Educational Consultancy</h3>
+        <p>Expert guidance for university applications, personal statement support, interview preparation, and admissions test training tailored for top-tier universities.</p>
+      </div>
+      <div class="overview-card">
+        <i class="fa-solid fa-chalkboard-user"></i>
+        <h3>Private Tutoring</h3>
+        <p>A dedicated team of subject specialists providing high-quality, personalized tutoring across Mathematics, Sciences, and related advanced subjects.</p>
+      </div>
+      <div class="overview-card">
+        <i class="fa-solid fa-microchip"></i>
+        <h3>AI-Driven EdTech</h3>
+        <p>Frontier educational software designed to revolutionize pedagogical methods. Features include <strong>TeacherSearch</strong> for recruitment and <strong>IRMaths</strong> for advanced digital learning, powered by cutting-edge AI.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="about-section" id="about">
+    <div class="container" style="padding-top: 0;">
+      <h2 class="section-title">About Us</h2>
+
+      <div class="profile-card">
+        <div class="profile-header">
+          <h3>Robert Hainitz</h3>
+          <p><i class="fa-solid fa-location-dot"></i> Based in Oxford, UK | Founder, Oxford Advanced Learning</p>
+        </div>
+        <div>
+          <p>For the second part of my professional career, I have been an accomplished <strong>physics and mathematics teacher and lecturer</strong> with a proven track record. Before this, I was a highly successful executive in the ICT technical support business, managing organisations of over 300 people. I combine commercial know-how with excellent operational and people management skills, and I am a conceptual, strategic thinker with advanced analytical capabilities who employs both commercial and scientific methodologies to achieve operational goals and business targets.</p>
+          <br>
+          <p>I am the founder of <strong>Oxford Advanced Learning (OAL)</strong>, a company initiative dedicated to providing premium services for the educational sector. These services include consultancy for university applications, private tutoring with a team of subject specialists, and software products that help teachers and schools in the recruitment process (<strong>TeacherSearch</strong>) and in advanced digital learning (<strong>IRMaths</strong>). OAL’s software products are at the frontier of modern pedagogy, incorporating advanced AI capabilities based on Google’s Gemini platform.</p>
+          <br>
+          <p><strong>Oxford Advanced Learning</strong> works in close partnership with <strong>IREducation</strong>, a dynamic company founded by one of my former prodigy students.</p>
+          <br>
+          <p><i class="fa-solid fa-envelope" style="color: var(--secondary-color);"></i> <a href="mailto:oxfordadvancedlearning@gmail.com" target="_blank">oxfordadvancedlearning@gmail.com</a> | <a href="mailto:roberthainitz@ireducation.org" target="_blank">roberthainitz@ireducation.org</a></p>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-header">
+          <h3>Isaac Teng</h3>
+          <p><i class="fa-solid fa-location-dot"></i> Based in Hong Kong | Founder, IREducation Inc.</p>
+        </div>
+        <div>
+          <p>I am a <strong>MSci Mathematics and Physics</strong> student at University College London and the founder of <strong>IREducation Inc.</strong> I am the lead programmer for our products such as <strong>TeacherSearch</strong> and <strong>IRMaths</strong>, with my main expertise lying in PHP development and backend server management, including deployment and maintenance of web applications.</p>
+          <br>
+          <p>I also specialize in application assistance for undergraduate students wishing to apply to the sciences and the business sector, providing help for personal statements, interview preparation and admissions test training. For all enquiries concerning undergraduate applications, please direct your messages to our main contact address.</p>
+          <br>
+          <p>For more information, please visit my website.</p>
+          <p>
+            <i class="fa-solid fa-globe" style="color: var(--secondary-color);"></i> <a href="https://isaacteng.com" target="_blank">isaacteng.com</a><br>
+            <i class="fa-solid fa-envelope" style="color: var(--secondary-color);"></i> <a href="mailto:isaacteng@ireducation.org" target="_blank">isaacteng@ireducation.org</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="ireducation-block">
+        <h2>Partnership with IREducation</h2>
+        <br>
+        <p><strong>IREducation (InteRactive Education)</strong> is an innovative education company based in Hong Kong, operating in China and the UK, where the latter is run under <em>Oxford Advanced Learning</em>. We are building a complete ecosystem that redefines the way students, teachers, and institutions engage with education.</p>
+        <p>With a strong focus on Mathematics, Sciences, and university preparation, our long-term vision is to become the leading educational corporation in the UK — an all-encompassing “educational emporium” offering tools for students, teachers, and institutions.</p>
+        <p>We aim to develop and deploy a suite of AI-driven tools, state-of-the-art digital platforms, and high-quality curricular content aligned with national standards. This initiative is designed not only to fill current educational gaps but to anticipate and shape the future of learning through innovation, accessibility, and academic excellence.</p>
+        <a href="https://ireducation.org" target="_blank" class="btn" style="background-color: var(--white); color: var(--primary-color);">
+          Access IREducation
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <section id="contact" class="container" style="text-align: center; padding-top: 2rem;">
+    <h2 class="section-title">Contact Us</h2>
+    <p style="font-size: 1.1rem; margin-bottom: 2rem;">Have questions about our consultancy, tutoring, or platforms? Get in touch with us.</p>
+    <a href="mailto:oxfordadvancedlearning@gmail.com" class="btn">Email Us</a>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="current-year"></span> Oxford Advanced Learning & IREducation Inc. All rights reserved.</p>
+    <script>
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+
+</body>
+</html>
