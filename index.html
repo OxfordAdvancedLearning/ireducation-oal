@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oxford Advanced Learning</title>
+  <title>Oxford Advanced Learning | TeacherSearch and Educational Services</title>
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -142,7 +142,9 @@
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 0.8rem 2rem;
       background-color: var(--accent-color);
       color: var(--text-dark);
@@ -150,7 +152,19 @@
       border-radius: 4px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      white-space: nowrap;
       transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: stretch;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-actions .btn {
+      flex: 0 0 auto;
     }
 
     .btn:hover {
@@ -164,7 +178,6 @@
       background-color: transparent;
       border: 2px solid var(--white);
       color: var(--white);
-      margin-left: 1rem;
     }
 
     .btn-outline:hover {
@@ -226,6 +239,97 @@
       font-size: 1.5rem;
       margin-bottom: 1rem;
       color: var(--primary-color);
+    }
+
+    /* Featured product */
+    .product-section {
+      background: var(--primary-color);
+      color: var(--white);
+    }
+
+    .product-section .section-title {
+      color: var(--white);
+    }
+
+    .product-kicker {
+      margin-bottom: 0.75rem;
+      color: var(--accent-color);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .product-copy h3 {
+      margin-bottom: 1rem;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+    }
+
+    .product-copy > p {
+      max-width: 720px;
+      margin-bottom: 1.25rem;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 1.08rem;
+    }
+
+    .product-steps {
+      padding: 1.75rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+    }
+
+    .product-steps h4 {
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .product-steps ol {
+      padding-left: 1.25rem;
+    }
+
+    .product-steps li + li {
+      margin-top: 0.75rem;
+    }
+
+    .product-features {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .product-feature {
+      padding: 1.35rem;
+      background: var(--white);
+      color: var(--text-dark);
+      border-top: 4px solid var(--accent-color);
+      border-radius: 8px;
+    }
+
+    .product-feature h4 {
+      margin-bottom: 0.45rem;
+      color: var(--primary-color);
+      font-size: 1.08rem;
+    }
+
+    .product-feature p {
+      color: var(--text-light);
+    }
+
+    .product-actions {
+      margin-top: 2rem;
     }
 
     /* About Section */
@@ -294,12 +398,27 @@
       .hero-text {
         margin: 0 auto;
       }
-      .btn-outline {
-        margin-left: 0;
-        margin-top: 1rem;
+      .hero-actions {
+        justify-content: center;
       }
       .nav-links {
         display: none; /* Simple mobile adjustment */
+      }
+      .product-layout,
+      .product-features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        max-width: 280px;
       }
     }
   </style>
@@ -311,6 +430,7 @@
       <div class="brand">Oxford Advanced Learning</div>
       <nav class="nav-links">
         <a href="#overview">Overview</a>
+        <a href="#teachersearch">TeacherSearch</a>
         <a href="#about">About Us</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -319,14 +439,16 @@
 
   <section class="hero">
     <div class="globe-container">
-      <iframe src="https://ireducation.org/globe.html?loc=oxford" class="globe-iframe" scrolling="no"></iframe>
+      <iframe src="https://ireducation.org/globe.html?loc=oxford" class="globe-iframe" title="Oxford Advanced Learning location" scrolling="no"></iframe>
     </div>
     <div class="hero-content">
       <div class="hero-text">
         <h1>Shaping the Future of Learning</h1>
         <p>Premium educational consultancy and state-of-the-art AI-driven pedagogical tools, empowering students, teachers, and institutions globally.</p>
-        <a href="#overview" class="btn">Discover More</a>
-        <a href="#about" class="btn btn-outline">Meet the Team</a>
+        <div class="hero-actions">
+          <a href="#teachersearch" class="btn">Explore TeacherSearch</a>
+          <a href="#overview" class="btn btn-outline">Discover More</a>
+        </div>
       </div>
     </div>
   </section>
@@ -352,6 +474,50 @@
     </div>
   </section>
 
+  <section id="teachersearch" class="product-section">
+    <div class="container">
+      <h2 class="section-title">Featured Platform</h2>
+      <div class="product-layout">
+        <div class="product-copy">
+          <p class="product-kicker">TeacherSearch</p>
+          <h3>AI-assisted recruitment built for education</h3>
+          <p>TeacherSearch connects schools with teachers through a focused, two-sided recruitment platform. It combines transparent eligibility filters with privacy-conscious AI support to reduce repetitive screening work while keeping people in control of every hiring decision.</p>
+          <p>Schools receive an automatically generated shortlist after a role is activated. Teachers maintain their own profiles, choose when they are open to opportunities, and decide whether to apply after receiving an invitation.</p>
+          <div class="product-actions">
+            <a href="https://teachersearch.uk" target="_blank" rel="noopener noreferrer" class="btn">Visit TeacherSearch</a>
+          </div>
+        </div>
+        <div class="product-steps">
+          <h4>How matching works</h4>
+          <ol>
+            <li>Check role, subject, and contract eligibility.</li>
+            <li>Apply each teacher's travel radius or relocation preference.</li>
+            <li>Screen an anonymised competency profile against the role and school context.</li>
+            <li>Present suitable candidates for the school to review and invite.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="product-features">
+        <article class="product-feature">
+          <h4>Privacy-conscious summaries</h4>
+          <p>AI creates concise competency summaries with personal identifiers removed, helping schools review relevant experience before identities are disclosed.</p>
+        </article>
+        <article class="product-feature">
+          <h4>Geographic eligibility</h4>
+          <p>Matching respects each candidate's stated travel radius and willingness to relocate, using real driving distance where required.</p>
+        </article>
+        <article class="product-feature">
+          <h4>Automated shortlisting</h4>
+          <p>An AI suitability screen works after deterministic eligibility checks to surface candidates whose experience fits the role.</p>
+        </article>
+        <article class="product-feature">
+          <h4>Human-led decisions</h4>
+          <p>TeacherSearch supports recruitment rather than replacing it: schools choose whom to invite, and teachers choose whether to submit a full application.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <div class="about-section" id="about">
     <div class="container" style="padding-top: 0;">
       <h2 class="section-title">About Us</h2>
@@ -366,7 +532,7 @@
           <br>
           <p>I am the founder of <strong>Oxford Advanced Learning (OAL)</strong>, a company initiative dedicated to providing premium services for the educational sector. These services include consultancy for university applications, private tutoring with a team of subject specialists, and software products that help teachers and schools in the recruitment process (<strong>TeacherSearch</strong>) and in advanced digital learning (<strong>IRMaths</strong>). OAL’s software products are at the frontier of modern pedagogy, incorporating advanced AI capabilities based on Google’s Gemini platform.</p>
           <br>
-          <p><strong>Oxford Advanced Learning</strong> works in close partnership with <strong>IREducation</strong>, a dynamic company founded by one of my former prodigy students.</p>
+          <p><strong>Oxford Advanced Learning</strong> works in close partnership with <strong>IREducation Ltd.</strong>, a dynamic education and learning-technology company.</p>
           <br>
           <p><i class="fa-solid fa-envelope" style="color: var(--secondary-color);"></i> <a href="mailto:oxfordadvancedlearning@gmail.com" target="_blank">oxfordadvancedlearning@gmail.com</a> | <a href="mailto:roberthainitz@ireducation.org" target="_blank">roberthainitz@ireducation.org</a></p>
         </div>
@@ -375,10 +541,10 @@
       <div class="profile-card">
         <div class="profile-header">
           <h3>Isaac Teng</h3>
-          <p><i class="fa-solid fa-location-dot"></i> Based in Hong Kong | Founder, IREducation Inc.</p>
+          <p><i class="fa-solid fa-location-dot"></i> Based in Hong Kong | Founder, IREducation Ltd.</p>
         </div>
         <div>
-          <p>I am a <strong>MSci Mathematics and Physics</strong> student at University College London and the founder of <strong>IREducation Inc.</strong> I am the lead programmer for our products such as <strong>TeacherSearch</strong> and <strong>IRMaths</strong>, with my main expertise lying in PHP development and backend server management, including deployment and maintenance of web applications.</p>
+          <p>I am a <strong>MSci Mathematics and Physics</strong> student at University College London and the founder of <strong>IREducation Ltd.</strong> I am the lead programmer for our products such as <strong>TeacherSearch</strong> and <strong>IRMaths</strong>, with my main expertise lying in PHP development and backend server management, including deployment and maintenance of web applications.</p>
           <br>
           <p>I also specialize in application assistance for undergraduate students wishing to apply to the sciences and the business sector, providing help for personal statements, interview preparation and admissions test training. For all enquiries concerning undergraduate applications, please direct your messages to our main contact address.</p>
           <br>
@@ -393,7 +559,7 @@
       <div class="ireducation-block">
         <h2>Partnership with IREducation</h2>
         <br>
-        <p><strong>IREducation (InteRactive Education)</strong> is an innovative education company based in Hong Kong, operating in China and the UK, where the latter is run under <em>Oxford Advanced Learning</em>. We are building a complete ecosystem that redefines the way students, teachers, and institutions engage with education.</p>
+        <p><strong>IREducation Ltd. (InteRactive Education)</strong> is an education and learning-technology company based in Hong Kong, operating in China and the UK, where the latter is run through <em>Oxford Advanced Learning</em>. We are building a connected ecosystem of curriculum resources and digital platforms for students, teachers, and institutions.</p>
         <p>With a strong focus on Mathematics, Sciences, and university preparation, our long-term vision is to become the leading educational corporation in the UK — an all-encompassing “educational emporium” offering tools for students, teachers, and institutions.</p>
         <p>We aim to develop and deploy a suite of AI-driven tools, state-of-the-art digital platforms, and high-quality curricular content aligned with national standards. This initiative is designed not only to fill current educational gaps but to anticipate and shape the future of learning through innovation, accessibility, and academic excellence.</p>
         <a href="https://ireducation.org" target="_blank" class="btn" style="background-color: var(--white); color: var(--primary-color);">
@@ -411,7 +577,7 @@
   </section>
 
   <footer>
-    <p>&copy; <span id="current-year"></span> Oxford Advanced Learning & IREducation Inc. All rights reserved.</p>
+    <p>&copy; <span id="current-year"></span> Oxford Advanced Learning &amp; IREducation Ltd. All rights reserved.</p>
     <script>
       document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
